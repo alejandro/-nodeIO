@@ -1,0 +1,18 @@
+{
+  "name": "learnode",
+  "version": "0.0.0",
+  "description": "Ejemplos Básicos de Node",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "repository": "",
+  "keywords": [
+    "Ejemplos",
+    "aprende",
+    "learn"
+  ],
+  "author": "Alejandro Morales",
+  "license": "BSD"
+}
