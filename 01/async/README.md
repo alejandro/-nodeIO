@@ -13,7 +13,6 @@ Diferencias entre programación asíncrona y síncrona.
 - Código Piramidal (spaguetti code): 
 
 
-
 ## Referencias:
 
 ## Recomendaciones:

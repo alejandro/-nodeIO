@@ -8,7 +8,7 @@
 
   Como en Node no existe el concepto de DOM y todo lo relacionado al browser,
   los eventos  pueden tener el nombre que tu quieras simplemente llamando al
-  método `emit` el cual envia a cada uno de los `listeners` (.on) la acción 
+  método `emit` ($.trigger) el cual envia a cada uno de los `listeners` (.on) ($.bind) la acción 
   a realizar.
 
   En Node casì todo esta basado en esto, piensa:
@@ -19,7 +19,7 @@
     var stream = fs.createReadStream(...)
     stream.on('data', ...)
 
-  Y aún más ...
+  Y así...
 
   */
 
@@ -27,7 +27,7 @@ var EventEmitter = require('events').EventEmitter
 var util = require('util')
 
 
-function MiGeneradorDeEventos (opciones) {
+function MiGeneradorDeEventos(opciones) {
   if (!(this instanceof MiGeneradorDeEventos)) return new MiGeneradorDeEventos(opciones)
   EventEmitter.call(this)
   util._extend(this, opciones)
@@ -49,4 +49,4 @@ MiGeneradorDeEventos.prototype.hacerAlgo = function () {
 var events = MiGeneradorDeEventos({name: 'Alejandro'})
 var hook   = events.hacerAlgo()
 
-hook.on('done',console.log.bind('this'))
+hook.on('done', console.log.bind('this'))

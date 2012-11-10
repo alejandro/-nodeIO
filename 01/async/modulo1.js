@@ -15,6 +15,8 @@ var Modulo1 = module.exports
 Modulo1.doSomething = function(cb) {
     var s = 100
     var iterations = 0;
+    // while bloquea el loop *siempre* por lo tanto el siguiente código
+    // es sincrono, aunque el nextTick propone de cierta manera una asyncronia
     while (--s) {
         iterations++
     }

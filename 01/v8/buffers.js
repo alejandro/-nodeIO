@@ -1,9 +1,8 @@
 /*
-  Buffers
-  V8 provee de nuevos métodos con Buffer, un buffer es una porción de datos
-  (binarios), lo cual los hacen más fácil y rápido de transportar entre instancias
-
-  */
+ * Buffers
+ * V8 provee de nuevos métodos con Buffer, un buffer es una porción de datos
+ * (binarios), lo cual los hacen más fácil y rápido de transportar
+ */
 
 var buff = new Buffer('Alejandro Morales', 'utf8')
 
