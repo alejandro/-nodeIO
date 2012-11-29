@@ -21,32 +21,32 @@
 
   Y así...
 
-  */
+  */ 'use strict';
 
-var EventEmitter = require('events').EventEmitter
-var util = require('util')
+var EventEmitter = require('events').EventEmitter;
+var util = require('util');
 
 
 function MiGeneradorDeEventos(opciones) {
-  if (!(this instanceof MiGeneradorDeEventos)) return new MiGeneradorDeEventos(opciones)
-  EventEmitter.call(this)
-  util._extend(this, opciones)
-  return this
+  if (!(this instanceof MiGeneradorDeEventos)) return new MiGeneradorDeEventos(opciones);
+  EventEmitter.call(this);
+  util._extend(this, opciones);
+  return this;
 }
 
-util.inherits(MiGeneradorDeEventos, EventEmitter)
+util.inherits(MiGeneradorDeEventos, EventEmitter);
 
 MiGeneradorDeEventos.prototype.hacerAlgo = function () {
-  var self = this
+  var self = this;
   setTimeout(function(){
-    self.emit('done', 'He terminado ' + self.name)
-  }, 1000)
-  return this
+    self.emit('done', 'He terminado ' + self.name);
+  }, 1000);
+  return this;
 }
 
 
 
-var events = MiGeneradorDeEventos({name: 'Alejandro'})
-var hook   = events.hacerAlgo()
+var events = new MiGeneradorDeEventos({name: 'Alejandro'});
+var hook   = events.hacerAlgo();
 
-hook.on('done', console.log.bind('this'))
+hook.on('done', console.log.bind('this'));

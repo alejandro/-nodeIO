@@ -4,16 +4,16 @@
   
   Imaginate que es una larga transacción, como una descarga, una petición a 
   una base de datos o alguna operación que requiere tiempo.
-  */
+  */ 'use strict';
 
-var Modulo2 = module.exports
+var Modulo2 = module.exports;
 
 Modulo2.doSomething = function() {
-    var s = 100
+    var s = 100;
     var iterations = 0;
     while (--s) {
-        iterations++
+        iterations++;
     }
-    console.log('Esto es sincrono:')
-    return iterations
+    console.log('Esto es sincrono:');
+    return iterations;
 }

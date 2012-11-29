@@ -21,30 +21,29 @@
 
   Y aún más ...
 
-  */
-var events = require('events')
-var EventEmitter = events.EventEmitter
+  */'use strict';
 
+var events = require('events');
+var EventEmitter = events.EventEmitter;
 
-var localEmitter = new EventEmitter()
-
+var localEmitter = new EventEmitter();
 
 // Métodos disponibles
 // console.log(localEmitter.__proto__) 
 
 
 localEmitter.once('PING', function(){
-    localEmitter.emit('PONG')
-})
+    localEmitter.emit('PONG');
+});
 
 localEmitter.on('hola', function(){
-    console.log('Dijo hola en ', new Date)
-    localEmitter.emit('PING')
-})
+    console.log('Dijo hola en ', Date.now());
+    localEmitter.emit('PING');
+});
+
 localEmitter.on('PONG', function(){
-    console.log('recibido, ping otra vez')
-    localEmitter.emit('PING')
-})
+    console.log('recibido, ping otra vez');
+    localEmitter.emit('PING');
+});
 
-localEmitter.emit('hola')
-
+localEmitter.emit('hola');

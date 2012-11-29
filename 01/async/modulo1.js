@@ -8,17 +8,17 @@
 
   No solo es de "agregar un callback", es mucho más complejo y por eso se
   recomienda hacer uso de ̣`process.nextTick` para que sea realmente "async"
-  */
+  */ 'use strict';
 
-var Modulo1 = module.exports
+var Modulo1 = module.exports;
 
 Modulo1.doSomething = function(cb) {
-    var s = 100
+    var s = 100;
     var iterations = 0;
     // while bloquea el loop *siempre* por lo tanto el siguiente código
     // es sincrono, aunque el nextTick propone de cierta manera una asyncronia
     while (--s) {
-        iterations++
+        iterations++;
     }
     // Hacer cambio para notar la diferencia
     // cb(iterations)
@@ -26,6 +26,6 @@ Modulo1.doSomething = function(cb) {
     // ò:
     
     process.nextTick(function(){
-        cb(iterations)
-    })
+        cb(iterations);
+    });
 }

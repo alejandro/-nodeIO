@@ -4,11 +4,11 @@
   comportamiento con prototype.
 
   Las utilidades y beneficios son muchas (namespace, poca contaminación del global, etc...)
-  */
+  */ 'use strict';
 
-module.exports = Punto
+module.exports = Punto;
 
-var util = require('util')
+var util = require('util');
 
 function Punto(coordenadas) {
     /*
@@ -16,13 +16,13 @@ function Punto(coordenadas) {
       referencia correcta, además evita que el usuario de nuestro código
       haga uso de `new`, lo cual no es lindo. ;)
       */
-    if (!(this instanceof Punto)) return new Punto(coordenadas)
+    if (!(this instanceof Punto)) return new Punto(coordenadas);
 
     // Copiar las coodenadas a `this`
-    util._extend(this, coordenadas)
+    util._extend(this, coordenadas);
 }
 
-Punto.fn = Punto.prototype
+Punto.fn = Punto.prototype;
 
 /*
   ¿Porque `__defineGetter__` y no `prototype`?
@@ -39,18 +39,18 @@ Punto.fn = Punto.prototype
 
   */
 Punto.fn.__defineGetter__('distancia', function(){
-    return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2))
-})
+    return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+});
 
 Punto.fn.__defineGetter__('area', function(){
-    return (0.5 * Number(this.x) * Number(this.y))
-})
+    return (0.5 * Number(this.x) * Number(this.y));
+});
 
 
 Punto.fn.extend = function(coordenada, mas) {
-    if (!this[coordenada]) throw new TypeError('Coordenada Inválida')
-    this[coordenada] += mas
-    return this
+    if (!this[coordenada]) throw new TypeError('Coordenada Inválida');
+    this[coordenada] += mas;
+    return this;
 }
 
 // TEST:

@@ -20,7 +20,7 @@
       Array#filter, Array#map, Array#sort, Array#reduce, JSON#parse,
       JSON#stringify, Object#create, Object#freeze, y muchos más estan disponibles
 
-  */
+  */ 'use strict';
 
 
 // Assert es un módulo utilizado para realizar pruebas a tu código
@@ -38,7 +38,7 @@ var datos = {
     json: {
         method: 'hola',
         hola: 'mundo',
-        'otro-key': +new Date,
+        'otro-key': Date.now(),
         'un key raro': 'si se valen espacios'
     }
 }
@@ -58,7 +58,7 @@ var datos = {
 
 Object.keys(datos).forEach(function(method){
 
-    if (method == 'map') {
+    if (method === 'map') {
         /*
           El método `map` te ayuda a crear un nuevo arreglo basandote en 
           otro, muy útil cuando quieres modificar el valor original de tu 
@@ -71,7 +71,7 @@ Object.keys(datos).forEach(function(method){
         })
         console.log('Map:\n\t', datos[method], alCuadrado)
 
-    } else if (method == 'filter') {
+    } else if (method === 'filter') {
 
         /*
           
@@ -96,7 +96,7 @@ Object.keys(datos).forEach(function(method){
 
 
         console.log('Filter:\n\t', datos[method], filtered, otroFilter)
-    } else if (method == 'sort') {
+    } else if (method === 'sort') {
 
         /*
           Sort, te ayuda a ordenar tu Array. Enough said!
@@ -114,7 +114,7 @@ Object.keys(datos).forEach(function(method){
 
         console.log('Sort:\n\t', sorted, descendente, conPalabras)
 
-    } else if (method == 'json') {
+    } else if (method === 'json') {
         /*
           Los métodos de JSON son:
             - parse
@@ -140,7 +140,7 @@ Object.keys(datos).forEach(function(method){
         assert.equal(Object.keys(JSON.parse(copy)).join(''), Object.keys(datos[method]).join('') , 'Deben de ser iguales')
         console.log('\tSin errores...')
     } else {
-        if (method == 'arr') return
+        if (method === 'arr') return
 
         /*
           Con `reduce`, conviertes tu array en un valor único, sea string o nùmero.

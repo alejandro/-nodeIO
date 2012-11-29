@@ -14,8 +14,8 @@
 
 // "use strict"; // Descomentar si no se quiere colores :)
 
-var modulo1 = require('./modulo1') // Asíncrono
-var modulo2 = require('./modulo2') // Síncrono
+var modulo1 = require('./modulo1'); // Asíncrono
+var modulo2 = require('./modulo2'); // Síncrono
 
 
 function logicaDelPrograma(type, next) {
@@ -31,13 +31,13 @@ function logicaDelPrograma(type, next) {
       Pero cabe destacar, que las demás operaciones siguen normalmente, 
       sin esperar a que este "subproceso" muestre una respuesta
       */
-    console.log('Esto es async:')
+    console.log('Esto es async:');
     modulo1.doSomething(function(cb){
-        var iteraciones = cb
-        console.log('Se han realizado %d iteraciones.\n', iteraciones)
-        next()
+        var iteraciones = cb;
+        console.log('Se han realizado %d iteraciones.\n', iteraciones);
+        next();
     })
-    console.log('\033[36m','=> Las demás actividades continuan...','\033[39m')
+    console.log('\033[36m','=> Las demás actividades continuan...','\033[39m');
   } else {
     /*
       Acción Síncrona
@@ -47,11 +47,11 @@ function logicaDelPrograma(type, next) {
       `modulo2#doSomething` termine. Lo que provoca grandes tiempos de
       espera y/o mayor consumo de recursos.
       */
-    var iteraciones = modulo2.doSomething()
-    console.log('Se realizó %d iteraciones', iteraciones)
+    var iteraciones = modulo2.doSomething();
+    console.log('Se realizó %d iteraciones', iteraciones);
   }
 }
 
 
 // Correr el programa
-logicaDelPrograma('async', logicaDelPrograma.bind('next', 'sync'))
+logicaDelPrograma('async', logicaDelPrograma.bind('next', 'sync'));
