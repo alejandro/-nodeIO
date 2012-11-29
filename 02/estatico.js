@@ -6,7 +6,7 @@
  */ 'use strict';
 
 
- module.exports = Estatico;
+module.exports = Estatico;
 
 var fs = require('fs');
 var path = require('path');
