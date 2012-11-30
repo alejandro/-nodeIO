@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+/**
+ * #nodeIO: Serve (archivo ejecutable del servidor estatico)
+ * -------------------------
+ * @author: Alejandro Morales <vamg008@gmail.com>
+ * @license: MIT 2012 <http://ale.mit-license.org>
+ */ 'use strict';
+
+/**
+ * Este es un archivo ejecutable que permite usar nuestro módulo
+ * como herramienta de linea de comandos.
+ * 
+ * Cosas a ver:
+ * ------------ 
+ * 
+ * - Variables globales: como `__filename` que hace referencia al nombre de este archivo otra 
+ *                       variable global es `__dirname`, que como has de pensar es el path del 
+ *                       directorio actual.
+ * - process: es otra variable global que hace referencia al proceso actual. `process.argv` hace 
+ *            referencia a las flags con que se ejecuto este archivo por ej.:
+ *
+ *    $ node miScript.js --flag1 --flag2=10 --verbose=false
+ *    
+ *    Al ejecutarse el script con la linea anterior `process.argv` seria un array que contiene:
+ *    ['node','miScript.js', '--flag1','--flag2=10', '--verbose=false']
+ *
+ * - process.cwd: es una función que permite identificar el directorio de donde fue llamado
+ *                este archivo. Por ejemplo, alguien ejecuto este script desde `/home/` entonces
+ *                process.cwd() -> '/home'
+ *
+ */
+var path = process.argv.pop();
+
+global.wpath = ~path.indexOf(__filename) 
+               ? process.cwd()
+               : path;
+
+var server = require('./')

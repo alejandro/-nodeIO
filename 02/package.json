@@ -1,0 +1,23 @@
+{
+  "name": "Estatico",
+  "version": "0.0.0",
+  "description": "El más simple de los servidores estaticos",
+  "main": "estatico.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/alejandro/-nodeIO/blob/master/02"
+  },
+  "keywords": [
+    "static",
+    "files"
+  ],
+  "author": "Alejandro Morales",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "mime": "~1.2.7"
+  }
+}
