@@ -35,4 +35,4 @@ global.wpath = ~path.indexOf(__filename)
                ? process.cwd()
                : path;
 
-var server = require('./')
+var server = require('./');
