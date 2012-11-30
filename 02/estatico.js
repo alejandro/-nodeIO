@@ -10,6 +10,36 @@ var path = require('path');
 var url = require('url');
 var mime = require('mime');
 
+
+/**
+ * streamFile( req<object>, res<object>)
+ * -------------------------------------
+ * Esta función simplemente crea un stream de lectura. La ventaja de utilizar
+ * este método en vez de estar leyendo el archivo y luego enviarlo al usuario, es
+ * que mediante streams se puede crear un "desvio" (pipe) hacia otro destino, en 
+ * este caso hacia la respuesta del servidor. Con esto, es como que el navegador 
+ * estuviera leyendo directamente el archivo, además evita cargar en memoria el 
+ * archivo.
+ *
+ * La variable `stream` en esta función es una instancia de `Stream` pero además
+ * tiene la habilidad de producir eventos ('error', 'data', 'end', ...). El único
+ * que nos importa es `error` pues este podria causar que nuestro servidor muriera.
+ * 
+ * `pipe` es un técnica proveniente de unix, el cual simplemente crea desvios de
+ * la información a otros destinos. Por ejemplo:
+ * 
+ *    stream.pipe(destino1).pipe(destino2).pipe(destino3)
+ * 
+ */
+function streamFile(req, res) {
+  var stream = fs.createReadStream(req.fpath);
+  stream.on('error', function (error){
+    res.error(500, error);
+  });
+  res.setHeader('Content-Type', req.mime);
+  stream.pipe(res);
+}
+
 /**
  * serveDirectory(req<object>, res<object>)
  * ----------------------------------------
@@ -47,36 +77,6 @@ function serveDirectory(req, res) {
   });
 }
 
-
-/**
- * streamFile( req<object>, res<object>)
- * -------------------------------------
- * Esta función simplemente crea un stream de lectura. La ventaja de utilizar
- * este método en vez de estar leyendo el archivo y luego enviarlo al usuario, es
- * que mediante streams se puede crear un "desvio" (pipe) hacia otro destino, en 
- * este caso hacia la respuesta del servidor. Con esto, es como que el navegador 
- * estuviera leyendo directamente el archivo, además evita cargar en memoria el 
- * archivo.
- *
- * La variable `stream` en esta función es una instancia de `Stream` pero además
- * tiene la habilidad de producir eventos ('error', 'data', 'end', ...). El único
- * que nos importa es `error` pues este podria causar que nuestro servidor muriera.
- * 
- * `pipe` es un técnica proveniente de unix, el cual simplemente crea desvios de
- * la información a otros destinos. Por ejemplo:
- * 
- *    stream.pipe(destino1).pipe(destino2).pipe(destino3)
- * 
- */
-function streamFile(req, res) {
-  var stream = fs.createReadStream(req.fpath);
-  stream.on('error', function (error){
-    res.error(500, error);
-  });
-  res.setHeader('Content-Type', req.mime);
-  stream.pipe(res);
-}
-
 /**
  * Estatico 
  * ---------
@@ -102,7 +102,7 @@ function Estatico(req, res) {
     res.end(msg || 'internal server error');
   }
 
-  if (req.uri == '/') {
+  if (req.uri === '/') {
     return serveDirectory(req, res);
   }
   else {
