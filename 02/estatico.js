@@ -92,7 +92,7 @@ function serveDirectory(req, res) {
  * archivo para así, poder nosotros, tomar la decisión si mostrar los archivos
  * o enviar el archivo al usuario.
  */
-function Estatico(req, res) {
+function estatico(req, res) {
   req.uri = url.parse(req.url).pathname;
   req.fpath = path.resolve(global.wpath, '.' + req.uri);
   req.mime = mime.lookup(req.fpath) ||  'application/json';
@@ -115,4 +115,4 @@ function Estatico(req, res) {
   }
 }
 
-module.exports = Estatico; 
+module.exports = estatico; 
