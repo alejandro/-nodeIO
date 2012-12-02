@@ -14,5 +14,8 @@
     "learn"
   ],
   "author": "Alejandro Morales",
-  "license": "BSD"
+  "license": "BSD",
+  "dependencies": {
+    "mysql": "~2.0.0-alpha4"
+  }
 }
