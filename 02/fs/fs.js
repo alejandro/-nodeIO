@@ -96,23 +96,23 @@ fs.stat('./list.json', function (err, stats){
  * es que permite hacer mejor uso de la memoria y operaciones del cpu.
  * Además evita hacer mal uso de los recursos.
  */
-!(function (){ // esto es innecesario, pero es más limpio
-var stream = fs.createReadStream('./list.json')
-var buffer = '' 
+;(function (){ // esto es innecesario, pero es más limpio
+  var stream = fs.createReadStream('./list.json')
+  var buffer = '' 
 
 
-stream.on('error', function (error){
-  console.log('ERROR en el stream --', error)
-})
+  stream.on('error', function (error){
+    console.log('ERROR en el stream --', error)
+  })
 
-stream.on('data', function (data){
-  buffer += data
-  console.log('datos recibidos')
-})
+  stream.on('data', function (data){
+    buffer += data
+    console.log('datos recibidos')
+  })
 
-stream.on('end', function (){
-  console.log('el stream ha terminado con:\n%s\n', buffer.toString())
-})
+  stream.on('end', function (){
+    console.log('el stream ha terminado con:\n%s\n', buffer.toString())
+  })
 })()
 
 // es lo mismo que
@@ -121,6 +121,5 @@ stream.on('end', function (){
   stream.on('error', function (error){
     console.log('ERROR en el stream --', error)
   })
-  var wstream = fs.createWriteStream('./listc.json')
   stream.pipe(process.stdout)
 })()
