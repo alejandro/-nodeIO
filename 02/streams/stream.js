@@ -14,7 +14,7 @@
  * especifiques el tipo.
  *
  * Por ejemplo:
- */
+ */ 'use strict';
 
 
 var Stream = require('stream');
@@ -47,4 +47,4 @@ function MiStream (){ // ejemplo de https://github.com/substack/stream-handbook
  *    stream.pipe(destino1).pipe(destino2).pipe(destino3)
  */
 
-MiStream().pipe(process.stdout)
+MiStream().pipe(process.stdout);

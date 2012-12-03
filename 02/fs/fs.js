@@ -13,8 +13,8 @@
    * Y por último:
    *    -- leyendo eg.txt -- (quien es el primero que fue escrito)
    *
-   */
-var fs = require('fs')
+   */ 'use strict';
+var fs = require('fs');
 
   /**
    * fs.readFile
@@ -35,10 +35,10 @@ var fs = require('fs')
    *             alguno y como último parametro el archivo ya leido.
    */
 fs.readFile('./eg.txt', 'utf8', function (error, eg){
-  if (error) throw error
-  console.log(' --- Leyendo eg.txt ---')
-  console.log(eg) // -> Este es un archivo de texto ... 
-})
+  if (error) throw error;
+  console.log(' --- Leyendo eg.txt ---');
+  console.log(eg); // -> Este es un archivo de texto ... 
+});
 
 /**
  * Por ejemplo uno de los errores más frecuentes es el "ENOENT", que básicamente 
@@ -47,13 +47,13 @@ fs.readFile('./eg.txt', 'utf8', function (error, eg){
 
 fs.readFile('./esteArchivoNoExiste.txt', 'utf8', function (error, archivo){
   if (error) {
-    console.log('---------- ERROR --------- ')
-    console.log('Código del Error: %s', error.code)
-    console.log('Mensaje de Error: %s', error.message)
-    console.log('Stack del Error: %s', error.stack)
-    console.log('---------------------------\n ')
+    console.log('---------- ERROR --------- ');
+    console.log('Código del Error: %s', error.code);
+    console.log('Mensaje de Error: %s', error.message);
+    console.log('Stack del Error: %s', error.stack);
+    console.log('---------------------------\n ');
   }
-})
+});
 
 /**
  * NOTA: Al realizar esta misma operación mediante la forma sincrona, el error
@@ -61,11 +61,11 @@ fs.readFile('./esteArchivoNoExiste.txt', 'utf8', function (error, archivo){
  * programa acabaria inmediatamente. Por lo tanto: ¡Siempre, SIEMPRE, MANEJA TUS ERRORES!
  */
 try {
-  var file = fs.readFileSync('./esteArchivoNoExiste.txt', 'utf8')
+  var file = fs.readFileSync('./esteArchivoNoExiste.txt', 'utf8');
 } catch (error) {
-  console.log('--Manejo de errores cuando utilizas código sincrono---')
-  console.dir(error.stack.split('\n'))
-  console.log('--- eof error sincrono --\n')
+  console.log('--Manejo de errores cuando utilizas código sincrono---');
+  console.dir(error.stack.split('\n'));
+  console.log('--- eof error sincrono --\n');
 }
 
 /**
@@ -79,14 +79,14 @@ try {
  */
 
 fs.stat('./list.json', function (err, stats){
-  console.log('--- estadisticas de list.json ---')
-  console.log('Size: ', stats.size)
-  console.log('Ultima modificación: ', stats.mtime) 
-  console.log('Mode: ', stats.mode) 
-  console.log('isFile:', stats.isFile())
-  console.log('isDirectory:', stats.isDirectory())
-  console.log('--- eof list.json ---\n')
-})
+  console.log('--- estadisticas de list.json ---');
+  console.log('Size: ', stats.size);
+  console.log('Ultima modificación: ', stats.mtime) ;
+  console.log('Mode: ', stats.mode);
+  console.log('isFile:', stats.isFile());
+  console.log('isDirectory:', stats.isDirectory());
+  console.log('--- eof list.json ---\n');
+});
 
 /**
  * Streams con fs
@@ -96,30 +96,30 @@ fs.stat('./list.json', function (err, stats){
  * es que permite hacer mejor uso de la memoria y operaciones del cpu.
  * Además evita hacer mal uso de los recursos.
  */
-;(function (){ // esto es innecesario, pero es más limpio
-  var stream = fs.createReadStream('./list.json')
-  var buffer = '' 
+(function (){ // esto es innecesario, pero es más limpio
+  var stream = fs.createReadStream('./list.json');
+  var buffer = '';
 
 
   stream.on('error', function (error){
-    console.log('ERROR en el stream --', error)
-  })
+    console.log('ERROR en el stream --', error);
+  });
 
   stream.on('data', function (data){
-    buffer += data
-    console.log('datos recibidos')
-  })
+    buffer += data;
+    console.log('datos recibidos');
+  });
 
   stream.on('end', function (){
-    console.log('el stream ha terminado con:\n%s\n', buffer.toString())
-  })
-})()
+    console.log('el stream ha terminado con:\n%s\n', buffer.toString());
+  });
+})();
 
 // es lo mismo que
-;(function(){
-  var stream = fs.createReadStream('./list.json')
+(function(){
+  var stream = fs.createReadStream('./list.json');
   stream.on('error', function (error){
-    console.log('ERROR en el stream --', error)
-  })
-  stream.pipe(process.stdout)
-})()
+    console.log('ERROR en el stream --', error);
+  });
+  stream.pipe(process.stdout);
+})();
