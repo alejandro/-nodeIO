@@ -21,7 +21,7 @@ var Stream = require('stream');
 
 
 
-function MiStream (){ // ejemplo de https://github.com/substack/stream-handbook
+function MiStream() { // ejemplo de https://github.com/substack/stream-handbook
 
   var s = new Stream();
   s.readable = true; // definirlo de lectura
