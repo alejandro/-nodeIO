@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>WebSockets Demo</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <section id="wrapper">
+    <h1>Hola, yo uso WebSockets</h1>
+    <span id="msgs"></span>
+    
+    <video id="stream" autoplay width="300" height="300">
+    </video>
+    <canvas class="hide" id="preview" width="300", height="230">
+    </canvas>
+    <button id="tomarFoto">Tomar!</button>
+    <ul id="imagenes">
+    </ul>  
+  </section>
+  
+
+  <script type="text/html" id="imgTmpl">
+    <li id="%id">
+      <img src="%src" />
+    </li>
+  </script>
+
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="scripts/camara.js"></script>
+  <script type="text/javascript">
+    var $status = window.msgs;
+    var tmpl = window.imgTmpl.textContent;
+    var $ul = window.imagenes;
+
+    App.ws = io.connect('/');
+
+    App.ws.on('ready', function(){
+      $status.textContent = 'WebSockets Listos!';
+    });
+    
+    App.insert = function insert(id, data){
+      $status.textContent = 'Imagen ' + id + ' agregada!'
+      $ul.innerHTML += tmpl.replace('%id', id)
+                           .replace('%src', data);
+
+    };
+
+    App.ws.on('imagen', function(imagen){
+      App.insert(imagen.id, imagen.data);
+    });
+
+    App.camara();
+  </script>
+
+</body>
+</html>

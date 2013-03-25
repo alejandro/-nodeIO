@@ -1,0 +1,15 @@
+body {
+  font-family: Helvetica, Arial;
+}
+.hide {
+  display: none;
+}
+span { display: block}
+ul {
+  list-style: none;
+  width: 100%;
+}
+
+li {
+  display: inline;
+}

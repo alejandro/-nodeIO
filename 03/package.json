@@ -1,0 +1,20 @@
+{
+  "name": "WebSockets",
+  "version": "0.0.0",
+  "description": "Una aplicación para compartir imagenes",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "websockets",
+    "socket.io"
+  ],
+  "author": "Alejandro Morales",
+  "license": "BSD",
+  "dependencies": {
+    "socket.io": "~0.9.13",
+    "express": "~3.1.0"
+  }
+}
