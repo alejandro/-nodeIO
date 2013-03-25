@@ -20,7 +20,7 @@
 
   <script type="text/html" id="imgTmpl">
     <li id="%id">
-      <img src="%src" />
+      <a href="/%id"><img src="%src" /></a>
     </li>
   </script>
 
@@ -39,7 +39,7 @@
     
     App.insert = function insert(id, data){
       $status.textContent = 'Imagen ' + id + ' agregada!'
-      $ul.innerHTML += tmpl.replace('%id', id)
+      $ul.innerHTML += tmpl.replace(/%id/g, id)
                            .replace('%src', data);
 
     };

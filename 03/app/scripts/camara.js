@@ -13,8 +13,8 @@ App.camara = function (){
 
   navigator.getUserMedia({video: 1}, function (stream){
     video.src = URL.createObjectURL(stream);
-    canvas.height = video.height;
-    canvas.width = video.width;
+    canvas.height = 230
+    canvas.width = 300
 
     btn.addEventListener('click', function() {
       var imagen;
@@ -28,7 +28,7 @@ App.camara = function (){
       };
       App.insert(imagen.id, imagen.data);
       App.ws.emit('imagen', imagen);
-    });
 
-  }, function (error){});
+    })
+   } , function (error){});
 };
